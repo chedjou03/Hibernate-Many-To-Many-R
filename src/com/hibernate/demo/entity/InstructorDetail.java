@@ -11,8 +11,7 @@ import javax.persistence.Table;
 @Table(name= "instructor_detail")
 public class InstructorDetail {
 	
-	//define fiels and annotate with tadabase column
-	
+	//define fiels and annotate with tadabase column	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -25,9 +24,7 @@ public class InstructorDetail {
 	private String hobby;
 	
 	
-	//create constructors
-	
-	
+	//create constructors	
 	public InstructorDetail(String youtubeChannel, String hobby) {
 		super();
 		this.youtubeChannel = youtubeChannel;

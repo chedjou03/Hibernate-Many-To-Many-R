@@ -1,49 +1,55 @@
 package com.hibernate.demo.entity;
 
-import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "student")
-public class Student {
+@Table(name= "instructor")
+public class Instructor 
+{
+	//define fiels and annotate with database column
 	
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
+	@Column(name = "id")
+	private int id;
 	
 	@Column(name = "first_name")
-	public String firstName;
+	private String firstName;
 	
 	@Column(name = "last_name")
-	public String lastName;
+	private String lastName;
 	
 	@Column(name = "email")
-	public String email;
+	private String email;
 	
-	@Column(name="date_of_birth")
-    @Temporal(TemporalType.DATE)    
-    private Date dateOfBirth;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "instructor_detail_id")
+	private InstructorDetail instructorDetail;
+		
 	
+	//create constructors
 	
-
-	public Student(String firstName, String lastName, String email, Date dateOfBirth) {
+	public Instructor() {
+		super();
+	}
+	
+	public Instructor(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.dateOfBirth = dateOfBirth;
 	}
-
-	public Student() { }
+	
+	
+	//create getters and setters
 
 	public int getId() {
 		return id;
@@ -76,20 +82,23 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public InstructorDetail getInstructorDetail() {
+		return instructorDetail;
+	}
+
+	public void setInstructorDetail(InstructorDetail instructorDetail) {
+		this.instructorDetail = instructorDetail;
+	}
+
 	
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
+	//create the toString method
 	
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", dateOfBirth=" + dateOfBirth + "]";
+		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", instructorDetail=" + instructorDetail + "]";
 	}
+	
 	
 }
