@@ -11,7 +11,7 @@ import com.hibernate.demo.entity.InstructorDetail;
 
 
 
-public class CreateDemo {
+public class DeleteDemo {
 
 	public static void main(String[] args) {
 		
@@ -24,20 +24,24 @@ public class CreateDemo {
 		
 		try
 		{
-			//create the objects
-			Instructor theInstructor = new Instructor("William","Ngassa","Ngassa@yahoo.fr");
-			
-			InstructorDetail theInstructorDetail = new InstructorDetail("http://youtube.com/WilliamNgassa","BasketBall");
-			
-			//associate the objects
-			theInstructor.setInstructorDetail(theInstructorDetail);
+			int theId = 2;
 			
 			//start transaction
 			session.beginTransaction();
 		
-			//save  the instructor
-			session.save(theInstructor);
-			
+			//get the Instructor to be deleted
+			Instructor tempInstructor = session.get(Instructor.class, theId);
+					
+			//delete  the instructor
+			if(tempInstructor != null)
+			{
+				System.out.println("Instructor Found  "+tempInstructor);
+				session.delete(tempInstructor);
+			}
+			else
+			{
+				System.out.println("not instructor with ID "+theId);
+			}
 			//commit the transaction
 			session.getTransaction().commit();
 		}
