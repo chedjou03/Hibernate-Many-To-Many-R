@@ -6,45 +6,38 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
 
 
 
-public class CreateDemo2 {
+public class GetInstructorCourseDemo {
 
 	public static void main(String[] args) {
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
 													.addAnnotatedClass(Instructor.class)
 													.addAnnotatedClass(InstructorDetail.class)
+													.addAnnotatedClass(Course.class)
 													.buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();
 		
 		try
 		{
-		
-			int theInstructorDetailId = 3;
-			
 			//start transaction
 			session.beginTransaction();
 		
-			//get the Instructor detail 
-			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theInstructorDetailId);
-					
-			//delete  the instructor detail
-			if(tempInstructorDetail != null)
-			{
-				System.out.println("Instructor Detail Found  "+tempInstructorDetail);
-				System.out.println("******* ");
-				System.out.println("Instructor Found  "+tempInstructorDetail.getInstructor());
-				
-			}
-			else
-			{
-				System.out.println("not instructor Detail with ID "+theInstructorDetailId);
-			}
+			//get instructor from the DB
+			int theInstructorID = 2;
+			Instructor theInstructor = session.get(Instructor.class, theInstructorID);
+			System.out.println(theInstructor);
+			
+			System.out.println(theInstructor.getCources());
+			
+			
+			
 			//commit the transaction
 			session.getTransaction().commit();
 		}
