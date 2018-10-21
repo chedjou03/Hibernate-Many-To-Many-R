@@ -20,18 +20,9 @@ public class CreateStudentDemo {
 		
 		try
 		{
-			//create a new student object
-			
-			String theDateOfBirthStr = "03/07/1985";
-            Date theDateOfBirth = DateUtils.parseDate(theDateOfBirthStr);
-            
-            Student theStudent = new Student("Paully", "Doe", "paul@luv.com", theDateOfBirth);
-			
 			//start transaction
 			session.beginTransaction();
-			
-			//save the student
-			session.save(theStudent);
+		
 			
 			
 			//commit the transaction

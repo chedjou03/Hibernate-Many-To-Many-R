@@ -1,4 +1,4 @@
-package com.hiberbate.demo.jdbc;
+package com.hibernate.demo.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ public class TestJdbc {
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		
-		String dbUrl = "jdbc:mysql://localhost:3306/demo?useSSL=false";
+		String dbUrl = "jdbc:mysql://localhost:3306/hb-01-one-to-one-uni?useSSL=false";
 		String user = "student";		
 		String pass = "student";
 		try 
