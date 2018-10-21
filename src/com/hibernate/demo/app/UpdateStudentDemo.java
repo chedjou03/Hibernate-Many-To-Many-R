@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.hibernate.demo.entity.Student;
 
-public class ReadStudentDemo {
+public class UpdateStudentDemo {
 
 	public static void main(String[] args) {
 		
@@ -18,7 +18,7 @@ public class ReadStudentDemo {
 		
 		try
 		{
-		
+
 			int Id = 5;	
 			
 			//start transaction
@@ -31,7 +31,7 @@ public class ReadStudentDemo {
 			if(theStudent != null)
 			{
 				System.out.println(theStudent);
-				
+				theStudent.setLastName("Binadama");
 			}
 			else
 			{
@@ -40,8 +40,6 @@ public class ReadStudentDemo {
 			
 			//commit the transaction
 			session.getTransaction().commit();
-			
-			
 		}
 		catch (Exception e)
 		{

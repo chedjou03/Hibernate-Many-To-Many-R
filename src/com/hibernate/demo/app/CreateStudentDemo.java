@@ -1,5 +1,7 @@
 package com.hibernate.demo.app;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,17 +21,17 @@ public class CreateStudentDemo {
 		try
 		{
 			//create a new student object
-			Student theStudent = new Student ("Christiano","Ronaldo","ronaldo@yahoo.fr");
-			Student theStudent1 = new Student ("Steph","Curry","Curry@yahoo.fr");
-			Student theStudent2 = new Student ("Kevin","Durant","KD@yahoo.fr");
+			
+			String theDateOfBirthStr = "03/07/1985";
+            Date theDateOfBirth = DateUtils.parseDate(theDateOfBirthStr);
+            
+            Student theStudent = new Student("Paully", "Doe", "paul@luv.com", theDateOfBirth);
 			
 			//start transaction
 			session.beginTransaction();
 			
 			//save the student
 			session.save(theStudent);
-			session.save(theStudent1);
-			session.save(theStudent2);
 			
 			
 			//commit the transaction
